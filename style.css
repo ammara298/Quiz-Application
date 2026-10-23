@@ -1,0 +1,125 @@
+
+:root {
+  --bg: #f1f8f4;
+  --card: #ffffff;
+  --text: #202832;
+  --muted: #718096;
+  --option: #f3f6f8;
+  --border: #e2e8f0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, Arial, sans-serif;
+  min-height: 100vh;
+  transition: background .25s, color .25s;
+}
+
+body.dark {
+  --bg: #17151b;
+  --card: #242129;
+  --text: #f6f3f8;
+  --muted: #b9b3c1;
+  --option: #35323b;
+  --border: #45414b;
+}
+
+h2 span { color: #eab308; }
+
+.muted { color: var(--muted); }
+
+.quiz-card {
+  max-width: 760px;
+  padding: clamp(20px, 4vw, 36px);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px #17203312;
+}
+
+.theme-btn {
+  background: var(--option);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.segments {
+  display: flex;
+  gap: 5px;
+}
+
+.segment {
+  height: 9px;
+  flex: 1;
+  border-radius: 8px;
+  background: var(--border);
+}
+
+.segment:nth-child(5n + 1) { --segment: #2878f0; }
+.segment:nth-child(5n + 2) { --segment: #198754; }
+.segment:nth-child(5n + 3) { --segment: #f5b400; }
+.segment:nth-child(5n + 4) { --segment: #dc3545; }
+.segment:nth-child(5n) { --segment: #7952b3; }
+
+.segment.done { background: var(--segment); }
+.segment.current { outline: 2px solid var(--segment); outline-offset: 2px; }
+
+.timer { color: #dc3545; }
+.timer.warning { animation: pulse 1s infinite; }
+
+.option {
+  width: 100%;
+  text-align: left;
+  color: var(--text);
+  background: var(--option);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 15px;
+  transition: .2s;
+}
+
+.option:not(:disabled):hover {
+  border-color: #2878f0;
+  transform: translateY(-1px);
+}
+
+.option.correct {
+  background: #d1fae5;
+  border-color: #198754;
+  color: #065f46;
+}
+
+.option.wrong {
+  background: #fee2e2;
+  border-color: #dc3545;
+  color: #991b1b;
+}
+
+body.dark .option.correct {
+  background: #174b39;
+  color: #b9f6d8;
+}
+
+body.dark .option.wrong {
+  background: #54252d;
+  color: #ffd1d6;
+}
+
+.option:disabled { opacity: 1; }
+
+.table { --bs-table-bg: transparent; --bs-table-color: var(--text); }
+.table th, .table td { border-color: var(--border); }
+.result-icon { font-size: 3rem; }
+
+@keyframes pulse {
+  50% { opacity: .45; }
+}
+
+@media (max-width: 576px) {
+  .quiz-card { border-radius: 14px; }
+  .table { font-size: .8rem; }
+  #question { font-size: 1.2rem; }
+}
